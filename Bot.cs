@@ -89,8 +89,6 @@ namespace CustomProject
 
             slashCommandConfig.RegisterCommands<ModerationSlashCommand>();
 
-            slashCommandConfig.RegisterCommands<AnnouncementSlashCommand>();
-
             Commands.CommandErrored += OnCommandError;
 
             await Client.ConnectAsync();
