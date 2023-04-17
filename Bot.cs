@@ -242,33 +242,6 @@ namespace CustomProject
         {
             return Task.CompletedTask;
         }
-
-        public async Task YoutubeUploadNotifier(string channelId, string apiKey, DiscordClient client, ulong channelIdToNotify)
-        {
-            var Timeforsearching = new Timer(300000); 
-            Timeforsearching.Elapsed += async (sender, e) => 
-            {
-                _video = _YouTubeEngine.GetLatestVideo(channelId, apiKey); //API goes into work
-                DateTime lastCheckedAt = DateTime.Now;
-
-                if (_video != null)
-                {
-                    if (temp.videoTitle == _video.videoTitle) //This is just a quick debug to see if it runs properly
-                    {
-                        Console.WriteLine("Same name buddy.");
-                    }
-                    else if (_video.PublishedAt < lastCheckedAt) //If the new video is actually a new video
-                    {
-                        var message = $"@everyone Ayo! We just got a new video guyss!! Come and check it out! | **{_video.videoTitle}** \n" +
-                                      "Da URL: " + _video.videoUrl;
-
-                        await client.GetChannelAsync(channelIdToNotify).Result.SendMessageAsync(message);
-                        temp = _video;
-                    }
-                }
-            };
-            Timeforsearching.Start();
-        }
     }
 }
 
